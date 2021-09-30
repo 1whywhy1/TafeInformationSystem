@@ -32,24 +32,47 @@ namespace TafeInformationSystem
                     break;
 
                 case LoginType.staff:
-
-                    break;
-
-                case LoginType.student:
                     try
                     {
+                     
                         loginID = Convert.ToInt32(txtLogin.Text);
                     }
                     catch
                     {
 
                     }
-                    frmStudent frmStudent = new frmStudent(loginID);
-                
-                    frmStudent.FormClosed += (s, args) => this.Close();
-                    frmStudent.Show();
-                    this.Hide();
-                    frmStudent.Focus();
+
+                    //frmStaff frmStaff = new frmStudent(loginID);
+
+                    //frmStaff.FormClosed += (s, args) => this.Close();
+                    //frmStaff.Show();
+                    //this.Hide();
+                    //frmStaff.Focus();
+
+                    break;
+
+                case LoginType.student:
+                   
+                        if (DLLValidation.clsValidation.ValidateEmpty(txtLogin.Text) && DLLValidation.clsValidation.ValidateLength(txtLogin.Text, 4,6) && DLLValidation.clsValidation.ValidateNumeric(txtLogin.Text))
+                        {
+
+                            MessageBox.Show(Convert.ToString(DLLValidation.clsValidation.ValidateEmpty(txtLogin.Text)));
+                            MessageBox.Show(Convert.ToString(DLLValidation.clsValidation.ValidateLength(txtLogin.Text,4,6)));
+                            MessageBox.Show(Convert.ToString(DLLValidation.clsValidation.ValidateNumeric(txtLogin.Text)));
+                            loginID = Convert.ToInt32(txtLogin.Text);
+
+                            frmStudent frmStudent = new frmStudent(loginID);
+
+                            frmStudent.FormClosed += (s, args) => this.Close();
+                            frmStudent.Show();
+                            this.Hide();
+                            frmStudent.Focus();
+                    } 
+                        else
+                        {
+                            MessageBox.Show("Wboom");
+                        }
+                 
                     break;
 
                 default:

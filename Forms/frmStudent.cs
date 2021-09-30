@@ -34,11 +34,6 @@ namespace TafeInformationSystem
         }
         #endregion
 
-        private void pctQuit_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
         private void btnStaff_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -95,8 +90,15 @@ namespace TafeInformationSystem
         {
             // Put Logout from DB logic here
             frmLogin frmLogin = new frmLogin();
+             frmLogin.FormClosed += (s, args) => this.Close();
             frmLogin.Show();
-            this.Close();
+            this.Hide();
+            frmLogin.Focus();
+        }
+
+        private void pctQuit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
